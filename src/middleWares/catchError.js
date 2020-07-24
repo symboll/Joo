@@ -1,4 +1,4 @@
-const { Exception } = require('../exception')
+const { Exception } = require('../resModel')
 
 const catchError = async(ctx, next) => {
   try {
@@ -6,7 +6,7 @@ const catchError = async(ctx, next) => {
   } catch (error) {
     if (error instanceof Exception) {
       ctx.body = {
-        msg: error.msg,
+        msg: error.message,
         errorCode: error.errorCode,
         request: `${ctx.method}: ${ctx.path}`
       }
@@ -15,7 +15,7 @@ const catchError = async(ctx, next) => {
 
       ctx.body = {
         msg: error.message,
-        errorCode: 9999,
+        errorCode: -1,
         request: `${ctx.method}: ${ctx.path}`
       }
       ctx.status = 500
