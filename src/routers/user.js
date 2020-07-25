@@ -7,5 +7,7 @@ const user = new User()
 //注册
 router.post('/register', user.register)
 
+// 登录
+router.post('/login', user.login)
 
 module.exports = router

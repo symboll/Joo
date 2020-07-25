@@ -1,9 +1,14 @@
+const bcrypt = require('bcryptjs')
+
 const { UserModel } = require('../models/user')
 const { Exception, Success } = require('../resModel')
+const  loginType  = require('../util/enum_login_type')
+
+
 class User {
 
   async register (ctx, next) {
-    // 校验 
+    // 参数校验 
     const body = ctx.request.body
     const { email, password, nickname } = body
 
@@ -25,6 +30,47 @@ class User {
       throw new Exception(`注册失败${e}!`)
     }
   }
+  
+  async login (ctx, next) {
+    // 参数校验
+    const body = ctx.request.body
+    const { email, password, type } = body
+    
+    // 校验type 
+    if(!loginType[type]) { throw new Exception(`登录type不合法`) }
+
+    switch (type) {
+      case loginType.USER_MINI_PROGRAM: 
+      break;
+
+      case loginType.USER_EMAIL: 
+
+        const hasRegister = await UserModel.findOne({
+          where: { email }
+        })
+        if (!hasRegister) { throw new Exception('账号不存在', 404) }
+        
+        const isEqual = bcrypt.compareSync(password, hasRegister.password)
+    
+        if (!isEqual) {
+          throw new Exception('密码错误！')
+        } else {
+          ctx.body = new Success('登录成功', 200, {        
+            id: hasRegister.id,
+            nickname: hasRegister.nickname,
+            email: hasRegister.email,
+            token: 'sdd'
+          })
+        }
+      break;
+
+      case loginType.USER_MOBILE: 
+      break;
+
+      default: throw new Exception(`登录type不合法`);
+    }
+  }
+
 }
 
 module.exports = User
