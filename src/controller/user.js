@@ -2,8 +2,7 @@ const bcrypt = require('bcryptjs')
 
 const { UserModel } = require('../models/user')
 const { Exception, Success } = require('../resModel')
-const  loginType  = require('../util/enum_login_type')
-const getToken = require('../util/token')
+const {getToken, authType, loginType } = require('../util')
 
 class User {
 
@@ -55,7 +54,7 @@ class User {
         if (!isEqual) {
           throw new Exception('密码错误！')
         } else {
-          const token = getToken(hasRegister.id, 2)
+          const token = getToken(hasRegister.id, authType.USER)
 
           ctx.body = new Success('登录成功', 200, {        
             nickname: hasRegister.nickname,
