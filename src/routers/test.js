@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const  Auth  = require('../middleWares/auth')
+const Auth  = require('../middleWares/auth')
 
 const router = new Router({ prefix: '/test' })
 const authType = require('../util/enum_auth_type')

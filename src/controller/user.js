@@ -1,8 +1,12 @@
 const bcrypt = require('bcryptjs')
+const axios = require('axios')
+const util = require('util')
+
 
 const { UserModel } = require('../models/user')
 const { Exception, Success } = require('../resModel')
 const {getToken, authType, loginType } = require('../util')
+const { wx: {appId,appSecret, loginUrl } } = require('../config')
 
 class User {
 
@@ -40,6 +44,27 @@ class User {
 
     switch (type) {
       case loginType.USER_MINI_PROGRAM: 
+      
+        const { code } = ctx.request.body
+        const url = util.format(loginUrl, appId, appSecret, code)
+        const result = await axios.get(url)
+        if (result.status === 200 && !result.data.errCode ) {
+          let user = await UserModel.findOne({
+            where: { openid: result.data.openid}
+          })
+          if(!user){
+            user = await UserModel.create({
+              openid: result.data.openid
+            })
+          }
+          const token = getToken(user.id, authType.USER)
+          ctx.body = {
+            token
+          }
+        }else {
+          throw new Exception('openid获取失败: '+ result.data.errmsg)
+        }
+        
       break;
 
       case loginType.USER_EMAIL: 
