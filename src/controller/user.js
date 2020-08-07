@@ -1,12 +1,13 @@
 const bcrypt = require('bcryptjs')
 const axios = require('axios')
 const util = require('util')
-
+const jwt  = require('jsonwebtoken')
 
 const { UserModel } = require('../models/user')
 const { Exception, Success } = require('../resModel')
 const {getToken, authType, loginType } = require('../util')
-const { wx: {appId,appSecret, loginUrl } } = require('../config')
+const { wx: {appId,appSecret, loginUrl },
+        security: { key } } = require('../config')
 
 class User {
 
@@ -96,6 +97,16 @@ class User {
     }
   }
 
+  async verify (ctx, next) {
+    const { token } = ctx.request.body
+    try{
+      jwt.verify(token, key )
+      ctx.body = { verify: true }
+    }catch (e) {
+      ctx.body = { verify: false }
+    }
+
+  }
 }
 
 module.exports = User
