@@ -5,6 +5,8 @@ const router = new Router({ prefix: '/test' })
 const authType = require('../util/enum_auth_type')
 
 const auth = new Auth(authType.USER)
+
+const { Favor } = require('../models/favor')
 //注册
 router.post('/', auth.check(), async (ctx, next) => {
   ctx.body = {
@@ -12,6 +14,12 @@ router.post('/', auth.check(), async (ctx, next) => {
   }
 })
 
+router.get('/getFavor', async(ctx, next)=> {
+  const favor = await Favor.findAll()
 
+  ctx.body = {
+    favor
+  }
+})
 
 module.exports = router

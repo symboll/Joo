@@ -59,9 +59,8 @@ class User {
             })
           }
           const token = getToken(user.id, authType.USER)
-          ctx.body = {
-            token
-          }
+
+          ctx.body = new Success('登录成功!', 200,  { token } )
         }else {
           throw new Exception('openid获取失败: '+ result.data.errmsg)
         }

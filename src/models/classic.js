@@ -4,7 +4,7 @@ const { sequelize } = require('../db')
 
 const basicFields = {
   image: Sequelize.STRING,
-  context: Sequelize.STRING,
+  content: Sequelize.STRING,
   pubdate: Sequelize.DATEONLY,
   fav_nums: Sequelize.INTEGER,
   title: Sequelize.STRING,
