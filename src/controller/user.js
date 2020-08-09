@@ -13,8 +13,7 @@ class User {
 
   async register (ctx, next) {
     // 参数校验 
-    const body = ctx.request.body
-    const { email, password, nickname } = body
+    const { email, password, nickname } = ctx.request.body
 
     // 检验是否重复
     const hasRepeat =await UserModel.findOne({
@@ -37,8 +36,7 @@ class User {
   
   async login (ctx, next) {
     // 参数校验
-    const body = ctx.request.body
-    const { email, password, type } = body
+    const { email, password, type } = ctx.request.body
     
     // 校验type 
     if(!loginType[type]) { throw new Exception(`登录type不合法`) }

@@ -8,5 +8,9 @@ const auth = new Auth()
 
 router.get('/laster', auth.check(), classic.laster)
 
+router.post('/:action', auth.check(), classic.sibling)
+
+// 获取某一期的 详情
+router.get('/info', auth.check(), classic.info)
 
 module.exports = router

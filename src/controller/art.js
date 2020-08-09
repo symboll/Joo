@@ -1,5 +1,5 @@
 const { Movie, Sentence, Music } = require('../models/classic')
-
+const { Favor } = require('../models/favor')
 class Art {
   constructor () {
 
@@ -31,6 +31,16 @@ class Art {
     }
 
     return art;
+  }
+
+  static async isFavor (art_id,type,uid) {
+    const favor = await Favor.findOne({
+      where: {
+        art_id,type,uid
+      }
+    })
+
+    return favor
   }
 }
 
