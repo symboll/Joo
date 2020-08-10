@@ -1,12 +1,12 @@
-
-const { Movie, Sentence, Music } = require('../models/classic')
-const { Flow} = require('../models/flow')
 const { Exception, Success } = require('../resModel')
+const { Flow} = require('../models/flow')
 const { Art } = require('./art')
-const { Favor } = require('../models/favor')
+const { actionType } = require('@/util')
 
 class Classic {
   async laster (ctx, next) {
+
+    // 按照index降序 取第一个。
     const flow = await Flow.findOne({
       order: [
         ['index', 'desc']
@@ -35,6 +35,8 @@ class Classic {
     //  数据验证:  
     // current: Number 类型。
     // action enum类型  next/ prev
+    if(!actionType[action]) { throw new Exception('Not Found',404) }
+
     let flow;
     switch (action) {
       case 'next':
@@ -76,7 +78,6 @@ class Classic {
     type = Number(type)
     art_id = Number(art_id)
     const uid = ctx.auth.uid
-
     const art = await Art.getData(art_id,type)
     const favor = await Art.isFavor(art_id,type,uid)
 

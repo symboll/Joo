@@ -1,12 +1,18 @@
 //收藏
+const { Op } = require('sequelize')
 const { sequelize } = require('../db/index')
 const { Exception, Success } = require('../resModel')
-const { Movie, Sentence, Music } = require('../models/classic')
 const { Favor } = require('../models/favor')
 const { Art } = require('./art')
 class Collection {
   async done (ctx, next) {
+    // 参数获取
     const { art_id, type, action } = ctx.request.body
+    // 参数校验
+    // art_id: Number(非负整数)/ 
+    // type:  enum[100/200/300/400]
+    // action  enum[thumbUp / cancel]
+
     const uid = ctx.auth.uid
     const favor = await Favor.findOne({
       where: {
@@ -59,8 +65,28 @@ class Collection {
           throw new Exception(`出现异常${e}`)
         }
         break;
-      default:
+      default: 
     }
+  }
+
+  async list(ctx, next) {
+    const uid = ctx.auth.uid
+
+    const list = await Favor.findAll({
+      where: {
+        uid,
+        type: {
+          [Op.not]: 400
+        }
+      }
+    })
+    const arts = await Art.getList(list)
+    const artsList = []
+    arts.forEach(item => {
+      const { delete_at, update_at, create_at, ...obj} = item.dataValues
+      artsList.push(obj)
+    })
+    ctx.body = new Success('成功', 200,  artsList)
   }
 }
 

@@ -1,9 +1,10 @@
 const getToken = require('./token')
-const loginType = require('./enum_login_type')
-const authType = require('./enum_auth_type')
-
+const loginType = require('./login_type')
+const authType = require('./auth_type')
+const actionType = require('./action_type')
 module.exports = {
   getToken,
   loginType,
-  authType
+  authType,
+  actionType
 }

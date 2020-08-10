@@ -12,8 +12,12 @@ const { wx: {appId,appSecret, loginUrl },
 class User {
 
   async register (ctx, next) {
-    // 参数校验 
+    // 参数获取
     const { email, password, nickname } = ctx.request.body
+    // 参数校验
+    // email,  非空校验/ 邮箱格式校验/
+    // password,  非空校验/ 长度校验(6-20) /字符校验(非纯数字)
+    // nickname,  非空校验/ 长度校验(2-20)
 
     // 检验是否重复
     const hasRepeat =await UserModel.findOne({
@@ -35,15 +39,20 @@ class User {
   }
   
   async login (ctx, next) {
-    // 参数校验
+    // 参数获取
     const { email, password, type } = ctx.request.body
-    
+    // 参数校验 
+    // email,  非空校验/ 邮箱格式校验/
+    // password,  非空校验/ 长度校验(6-20) /字符校验(非纯数字)
+    // type 类型校验 enum: 100 / 101 / 102
+
     // 校验type 
     if(!loginType[type]) { throw new Exception(`登录type不合法`) }
 
     switch (type) {
       case loginType.USER_MINI_PROGRAM: 
       
+        // code 微信登录特有
         const { code } = ctx.request.body
         const url = util.format(loginUrl, appId, appSecret, code)
         const result = await axios.get(url)
