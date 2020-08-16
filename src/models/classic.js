@@ -3,7 +3,12 @@ const { Sequelize, Model } = require('sequelize')
 const { sequelize } = require('../db')
 
 const basicFields = {
-  image: Sequelize.STRING,
+  image: {
+    type: Sequelize.STRING,
+    get () {
+      return ''
+    }
+  },
   content: Sequelize.STRING,
   pubdate: Sequelize.DATEONLY,
   fav_nums: Sequelize.INTEGER,

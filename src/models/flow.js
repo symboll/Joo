@@ -1,3 +1,5 @@
+// 期刊表
+
 const { Sequelize, Model } = require('sequelize')
 
 const { sequelize } = require('../db')

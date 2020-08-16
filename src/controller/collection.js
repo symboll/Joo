@@ -21,12 +21,13 @@ class Collection {
         uid
       }
     })
-    const art = await Art.getData(art_id, type)
+    let art;
     switch (action) {
       case 'thumbUp':
         if(favor) {
           throw new Exception('你已经点赞过', 400)
         }
+        art = await Art.getData(art_id, type);
         try {
           sequelize.transaction(async t=> {
             await Favor.create(
@@ -48,6 +49,7 @@ class Collection {
         if(!favor) {
           throw new Exception('你还没有点赞过', 400)
         }
+        art = await Art.getData(art_id, type);
         try {
           sequelize.transaction(async t=> {
             await Favor.destroy(
@@ -90,6 +92,4 @@ class Collection {
   }
 }
 
-module.exports = {
-  Collection
-}
+module.exports = Collection;

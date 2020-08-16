@@ -1,3 +1,5 @@
+// 用户点赞表
+
 const { Sequelize, Model } = require('sequelize')
 
 const { sequelize } = require('../db')

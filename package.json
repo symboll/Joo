@@ -22,9 +22,10 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
+    "koa-static": "^5.0.0",
     "nodemon": "^2.0.4"
   },
-  "_moduleAliases":{
-    "@":"./src"
+  "_moduleAliases": {
+    "@": "./src"
   }
 }

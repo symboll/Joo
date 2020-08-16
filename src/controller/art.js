@@ -1,5 +1,6 @@
 const { Op } = require('sequelize')
 const { Movie, Sentence, Music } = require('../models/classic')
+const { BookModel } = require('../models/book')
 const { Favor } = require('../models/favor')
 class Art {
   constructor () {
@@ -25,6 +26,9 @@ class Art {
         break;
       // 书籍 book
       case 400:
+        art = await BookModel.findOne({
+          where: { id: art_id }
+        })
         break;
 
       default :
@@ -60,6 +64,7 @@ class Art {
     }
     return arts.flat(2)
   }
+
   static async _getListByType (ids, key) {
     let arts = []
     switch(Number(key)) {
