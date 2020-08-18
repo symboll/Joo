@@ -86,6 +86,7 @@ class Collection {
     const artsList = []
     arts.forEach(item => {
       const { delete_at, update_at, create_at, ...obj} = item.dataValues
+      obj.image = `${ctx.origin}/static/${obj.image}`
       artsList.push(obj)
     })
     ctx.body = new Success('成功', 200,  artsList)
