@@ -19,7 +19,7 @@ class Classic {
       const favor = await Art.isFavor(flow.art_id, flow.type, uid)
       const { delete_at, update_at, create_at,
             ...artInfo } = art.dataValues || {}
-      // artInfo.image = `${ctx.origin}/static/${artInfo.image}` 
+      artInfo.image = `${ctx.origin}/static/${artInfo.image}` 
       ctx.body = new Success('成功', 200, {
         ...artInfo,
         index: flow.index,
@@ -64,6 +64,7 @@ class Classic {
       const favor = await Art.isFavor(flow.art_id, flow.type, uid)
       const { delete_at, update_at, create_at,
             ...artInfo } = art.dataValues || {}
+      artInfo.image = `${ctx.origin}/static/${artInfo.image}`
       ctx.body = new Success('成功', 200, {
         ...artInfo,
         index: flow.index,
@@ -87,7 +88,7 @@ class Classic {
     } else {
       const { delete_at, update_at, create_at,
         ...artInfo } = art.dataValues || {}
-
+      artInfo.image = `${ctx.origin}/static/${artInfo.image}` 
       ctx.body = new Success('成功', 200, {
         ...artInfo,
         favor: favor ? true : false
