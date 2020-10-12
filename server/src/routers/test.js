@@ -17,18 +17,6 @@ router.post('/', auth.check(), async (ctx, next) => {
     id: ctx.auth.uid
   }
 })
-router.get('/', async (ctx, next) => {
-  ctx.body = {
-    data: 'hello ~'
-  }
-})
 
-router.get('/getFavor', async(ctx, next)=> {
-  const favor = await Favor.findAll()
-
-  ctx.body = {
-    favor
-  }
-})
 
 module.exports = router
