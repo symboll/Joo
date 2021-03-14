@@ -1,18 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
+    "pages/information/index",
+    "pages/moments/index",
+    "pages/friend/index",
+    "pages/mall/index",
+    "pages/my/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -22,5 +14,41 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#515151",
+    "list":[
+      {
+        "pagePath": "pages/information/index",
+        "text": "资讯",
+        "iconPath": "images/information.png",
+        "selectedIconPath": "images/information_selected.png"
+      },
+      {
+        "pagePath": "pages/moments/index",
+        "text": "盟友圈",
+        "iconPath": "images/moments.png",
+        "selectedIconPath": "images/moments_selected.png"
+      },
+      {
+        "pagePath": "pages/friend/index",
+        "text": "好友",
+        "iconPath": "images/friend.png",
+        "selectedIconPath": "images/friend_selected.png"
+      },
+      {
+        "pagePath": "pages/mall/index",
+        "text": "商城",
+        "iconPath": "images/mall.png",
+        "selectedIconPath": "images/mall_selected.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_selected.png"
+      }
+    ]
+  }
 }

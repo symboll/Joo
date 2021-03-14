@@ -1,0 +1,5 @@
+ <view>
+ {{ sum }}
+
+ <button bind:tap="handleClick">BTN</button>
+ </view>
