@@ -72,7 +72,6 @@ Page({
   },
 
   handleClick () {
-    // console.log('click')
     this.update()
   }
 })

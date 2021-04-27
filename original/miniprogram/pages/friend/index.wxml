@@ -1,2 +1,36 @@
-<!--pages/friend/index.wxml-->
-<text>pages/friend/index.wxml</text>
+<swiper 
+  indicator-dots="true" 
+  autoplay="true"
+  interval="2000"
+  duration="1000"
+>
+  <block wx:for="{{ swiperImageUrls }}" wx:key="url">
+    <swiper-item >
+      <image 
+        class="img"
+        src="{{ item.url }}" 
+        alt="" 
+        mode="widthFix"
+      />
+    </swiper-item>
+  </block>
+</swiper>
+
+<waterfall
+ loading="{{loadMorePending}}"
+ isAllLoaded="{{isAllLoaded}}"
+ class="waterfall-wrap"
+>
+ <block wx:for="{{ playList }}" wx:key="_id">
+  <waterfall-item
+    index="{{index}}"
+    custom-class="flow-item-wrapper"
+  >
+    <view class="play-item">
+      <image src="{{ item.picUrl }}"></image>
+      <view>{{ item.name }}</view>
+      <view>{{ item.playCount }}</view>
+    </view>
+  </waterfall-item>
+ </block>
+</waterfall>
