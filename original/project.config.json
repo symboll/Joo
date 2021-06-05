@@ -40,7 +40,6 @@
   "appid": "wx9766f0af0dbeb256",
   "projectname": "original",
   "libVersion": "2.14.1",
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "search": {
       "list": []
@@ -56,6 +55,11 @@
     },
     "miniprogram": {
       "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide"
+        }
       ]
     }
   }

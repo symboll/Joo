@@ -1,0 +1,38 @@
+
+<!-- 
+  首页内容展示
+  主题色：  未定 【目前 灰 黑  白】
+  <view>页面设计：</view>
+  <view>轮播图展示。轮播图 图片，可配置</view>
+  <view>金刚位展示： 点击金刚位 进入 对应详情 【 金刚位 可以有8个，或者10个。】</view>
+  
+  <view>九瀛教育介绍</view>
+  <view>课程介绍</view>
+  <view>老师介绍</view>
+</view> -->
+
+
+<swiper
+  class="swiper"
+  autoplay="true" 
+  interval="4000" 
+  duration="1000"
+>
+  <block wx:for="{{ swiperImageUrls }}" wx:key="*this">
+    <swiper-item>
+      <image src="{{ item.url }}" mode="heightFix" class="img"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- <view class="wrap" bindtap="handleTap">
+  <view class="company" data-type="company">
+    九瀛教育
+  </view>
+  <view class="enterfor" data-type="enterfor">近期课程，点击进入课程报名 </view>
+  <view class="ct">
+    <view class="curriculum" data-type="curriculum">课程介绍</view>
+    <view class="teacher" data-type="teacher">老师介绍</view>
+  </view>
+  <view class="foot">GOOD EVERY DAY</view>
+</view> -->

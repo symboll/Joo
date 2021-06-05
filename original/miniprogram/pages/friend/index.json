@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "waterfall": "../../components/waterfall/waterfall",
-    "waterfall-item": "../../components/waterfall/waterfall-item"
-  },
-  "navigationBarTitleText": "好友",
-  "enablePullDownRefresh": true
-}

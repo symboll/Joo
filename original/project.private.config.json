@@ -13,20 +13,9 @@
     "miniprogram": {
       "list": [
         {
-          "name": "朋友",
-          "pathName": "pages/friend/index",
+          "name": "about",
+          "pathName": "pages/about/index",
           "query": "",
-          "scene": null
-        },
-        {
-          "name": "盟友圈",
-          "pathName": "pages/moments/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "商城",
-          "pathName": "pages/mall/index",
           "scene": null
         }
       ]

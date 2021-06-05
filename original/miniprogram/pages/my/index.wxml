@@ -1,2 +1,0 @@
-<!--pages/my/index.wxml-->
-<text> sum:::{{ sum }}</text>
