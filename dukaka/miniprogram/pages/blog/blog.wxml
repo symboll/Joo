@@ -1,0 +1,62 @@
+<view class="contanier">
+  <view class="header">
+    <view class="publish-container" bind:tap="onPublish">
+      <i class="iconfont icon-fabu"></i>
+    </view>
+    <view class="search-container">
+      <search 
+        iconfont="iconfont"
+        icon-sousuo="icon-sousuo"
+        bind:search="onSearch"
+      />
+    </view>
+  </view>
+
+  <view class="blog-list">
+    <block wx:for="{{ blogList }}" wx:key="_id">
+      <view class="blog-panel">
+        <blog-card 
+          blog="{{item}}"
+          data-blog="{{ item }}"
+          bind:tap="goComment"
+        />
+        <blog-control 
+          iconfont="iconfont"
+          icon-pinglun="icon-pinglun"
+          icon-fenxiang="icon-fenxiang"
+          bind:commit="onCommit"
+          bind:share="onShare"
+        />
+      </view>
+    </block>
+  </view>
+  
+
+  
+  <bottom-modal 
+    visible="{{ modalVisible }}" 
+    bind:modalClose="onClose"
+  >
+    <login
+      bind:login="onLogin"
+    ></login>
+  </bottom-modal>
+
+
+  <bottom-modal
+    visible="{{ commitVisible }}"
+    bind:modalClose="onCommitClose"
+  >
+  <view class="wrap">
+    <textarea 
+      name="content" 
+      class="comment-content" 
+      placeholder="写评论"
+      value="{{ commentContent }}"
+      fixed="true" 
+    ></textarea>
+    <button class="comment-btn" bind:tap="send">发送</button>
+  </view>
+  </bottom-modal>
+
+</view>

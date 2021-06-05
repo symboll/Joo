@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "playlist-item": "/components/playlist-item/index" 
+  },
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "音乐"
+}
